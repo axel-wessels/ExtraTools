@@ -1,0 +1,16 @@
+[
+{
+  "modid": "extratools",
+  "name": "Axels Extra Tools Mod",
+  "description": "Extra tools for extra options",
+  "version": "1.12.2-0.1",
+  "mcversion": "1.12.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Axel Wessels"],
+  "credits": "Axel en Bram",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

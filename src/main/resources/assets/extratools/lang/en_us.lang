@@ -1,0 +1,32 @@
+#Blocks
+tile.copper_ore.name=Copper Ore
+tile.tin_ore.name=Tin Ore
+
+#Items
+item.copper_ingot.name=Copper Ingot
+item.tin_ingot.name=Tin Ingot
+item.bronze_ingot.name=Bronze Ingot
+item.bronze_alloy.name=Bronze Alloy
+
+item.copper_pickaxe.name=Copper Pickaxe
+item.tin_pickaxe.name=Tin Pickaxe
+item.bronze_pickaxe.name=Bronze Pickaxe
+
+item.copper_sword.name=Copper Sword
+item.tin_sword.name=Tin Sword
+item.bronze_sword.name=Bronze Sword
+
+item.bronze_axe.name=Bronze Axe
+item.copper_axe.name=Copper Axe
+item.tin_axe.name=Tin Axe
+
+item.copper_hoe.name=Copper Hoe
+item.tin_hoe.name=Tin Hoe
+item.bronze_hoe.name=Bronze Hoe
+
+item.copper_shovel.name=Copper Hoe
+item.tin_shovel.name=Tin Shovel
+item.bronze_shovel.name=Bronze Shovel
+
+#CreativeTab
+itemGroup.extratools=Extra Tools
