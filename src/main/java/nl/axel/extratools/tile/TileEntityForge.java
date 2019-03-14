@@ -4,13 +4,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import nl.axel.extratools.ExtraTools;
 import nl.axel.extratools.init.ModItems;
-import nl.axel.extratools.util.Names;
 
 import javax.annotation.Nullable;
 
@@ -21,7 +24,7 @@ public class TileEntityForge extends TileEntity implements ITickable {
     private int progress = 0;
 
     /*
-     * ToDo save the progress
+     * Done S T save the progress
      */
 
 
@@ -76,7 +79,7 @@ public class TileEntityForge extends TileEntity implements ITickable {
                     //else progresses
                 }else {
                     progress--;
-                    ExtraTools.logger.debug(progress);
+                   //Todo paticle spawning
                 }
 
                 //else starting the progress
@@ -98,5 +101,11 @@ public class TileEntityForge extends TileEntity implements ITickable {
     public boolean getWorking(){
         return isWorking;
     }
+
+    @SideOnly(Side.CLIENT)
+    private void SpawnParticle(){
+        world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, (double)pos.getX() + 0.5D, (double)pos.getY() + 1.2D, (double)pos.getZ() + 0.5D, (double)1 / 24.0D, 0.0D, 0.0D);
+    }
+
 
 }

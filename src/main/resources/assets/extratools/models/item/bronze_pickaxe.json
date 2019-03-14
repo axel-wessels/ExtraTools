@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "extratools:items/bronze_pickaxe"
+    "layer0": "extratools:items/bronze_pickaxe§"
   }
 }

@@ -6,18 +6,16 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ITickable;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import nl.axel.extratools.ExtraTools;
-import nl.axel.extratools.tile.TileEntityCounter;
+import nl.axel.extratools.init.ModItems;
 import nl.axel.extratools.tile.TileEntityForge;
 import nl.axel.extratools.util.Names;
 
@@ -38,9 +36,9 @@ public class BlockForge extends BlockTileEntity<TileEntityForge> {
     * */
 
     /*
-     * ToDo make tileEntity only accept bronze alloys
-     * ToDo lock the inventory while working
-     * ToDo emit particles while working
+     * Done S T lock the inventory while working
+     * Done S T lock the inventory to one bronze alloy
+     * Done A T give a message when clicked while working or wrong item
      */
 
     @Override
@@ -62,21 +60,29 @@ public class BlockForge extends BlockTileEntity<TileEntityForge> {
 
             //checks if the player is sneaking
             if (!player.isSneaking()) {
+                if(!tile.getWorking()) {
 
-                //checks if the players hand is empty
-                if (player.getHeldItem(hand).isEmpty()) {
+                    //checks if the players hand is empty
+                    if (player.getHeldItem(hand).isEmpty()) {
 
-                    //if player hand is empty and the player is not sneaking: gets the items from the tile and puts in in the hand of the player
-                    player.setHeldItem(hand, itemHandler.extractItem(0, 64, false));
+                        //if player hand is empty and the player is not sneaking: gets the items from the tile and puts in in the hand of the player
+                        player.setHeldItem(hand, itemHandler.extractItem(0, 64, false));
 
+                    } else {
+                        //checks if held items is bronze alloy
+                        if (player.getHeldItem(hand).getItem() == ModItems.bronze_alloy) {
+                            //if player hand is not empty, contains bronze alloy and the player is not sneaking: puts the item from the hand into the tile
+                            itemHandler.insertItem(0, player.getHeldItem(hand).splitStack(1), false);
+                        }else {
+                            player.sendMessage(new TextComponentString("This machine only accepts bronze alloys."));
+                        }
+                    }
+
+                    //makes sure the block is updated
+                    tile.markDirty();
                 } else {
-
-                    //if player hand is not empty and the player is not sneaking: puts the item from the hand into the tile
-                    player.setHeldItem(hand, itemHandler.insertItem(0, player.getHeldItem(hand), false));
+                    player.sendMessage(new TextComponentString("This forge is currently in use!"));
                 }
-
-                //makes sure the block is updated
-                tile.markDirty();
 
 
             } else {
@@ -136,6 +142,17 @@ public class BlockForge extends BlockTileEntity<TileEntityForge> {
     @Override
     public TileEntityForge createTileEntity(World world, IBlockState state) {
         return new TileEntityForge();
+    }
+
+    public void SpawnParticle(BlockPos pos, World world){
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
+
+        world.spawnParticle(EnumParticleTypes.NOTE, x * 2.0F, y * 2.0F, z *2.0F, 0.02D, 0.02D, 0.02D);
+
+
+
     }
 
 

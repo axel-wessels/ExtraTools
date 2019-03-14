@@ -14,6 +14,13 @@ public class Names {
         public static final String TIN_INGOT = "tin_ingot";
         public static final String BRONZE_ALLOY = "bronze_alloy";
         public static final String BRONZE_INGOT = "bronze_ingot";
+        public static final String OBSIDIAN_PICKAXEHEAD = "obsidian_pickaxehead";
+        public static final String OBSIDIAN_SWORDBLADE = "obsidian_swordblade";
+        public static final String OBSIDIAN_SHOVELHEAD = "obsidian_shovelblade";
+        public static final String OBSIDIAN_AXEHEAD = "obsidian_axehead";
+        public static final String OBSIDIAN_HOEHEAD = "obsidian_hoehead";
+        public static final String IRON_ROD = "iron_rod";
+        public static final String BRONZE_GEAR = "bronze_gear";
 
         //pickaxes
         public static final String COPPER_PICKAXE = "copper_pickaxe";

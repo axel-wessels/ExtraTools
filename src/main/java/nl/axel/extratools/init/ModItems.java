@@ -14,6 +14,14 @@ public class ModItems {
     public static ItemBasic tin_ingot = new ItemBasic(Names.Items.TIN_INGOT);
     public static ItemBasic bronze_alloy = new ItemBasic(Names.Items.BRONZE_ALLOY);
     public static ItemBasic bronze_ingot = new ItemBasic(Names.Items.BRONZE_INGOT);
+    public static ItemBasic obsidian_pickaxehead = new ItemBasic(Names.Items.OBSIDIAN_PICKAXEHEAD);
+    public static ItemBasic obsidian_swordblade = new ItemBasic(Names.Items.OBSIDIAN_SWORDBLADE);
+    public static ItemBasic obsidian_shovelhead = new ItemBasic(Names.Items.OBSIDIAN_SHOVELHEAD);
+    public static ItemBasic obsidian_axehead = new ItemBasic(Names.Items.OBSIDIAN_AXEHEAD);
+    public static ItemBasic obsidian_hoehead = new ItemBasic(Names.Items.OBSIDIAN_HOEHEAD);
+    public static ItemBasic iron_rod = new ItemBasic(Names.Items.IRON_ROD);
+    public static ItemBasic bronze_gear = new ItemBasic(Names.Items.BRONZE_GEAR);
+
 
     //Pickaxes
     public static BasicToolPickaxe copper_pickaxe = new BasicToolPickaxe(ExtraTools.copperToolMaterial, Names.Items.COPPER_PICKAXE);
@@ -47,6 +55,13 @@ public class ModItems {
                 tin_ingot,
                 bronze_ingot,
                 bronze_alloy,
+                obsidian_pickaxehead,
+                obsidian_swordblade,
+                obsidian_shovelhead,
+                obsidian_axehead,
+                obsidian_hoehead,
+                iron_rod,
+                bronze_gear,
 
                 copper_pickaxe,
                 tin_pickaxe,
@@ -75,6 +90,14 @@ public class ModItems {
         tin_ingot.registerItemModel();
         bronze_ingot.registerItemModel();
         bronze_alloy.registerItemModel();
+        obsidian_pickaxehead.registerItemModel();
+        obsidian_axehead.registerItemModel();
+        obsidian_hoehead.registerItemModel();
+        obsidian_shovelhead.registerItemModel();
+        obsidian_swordblade.registerItemModel();
+        iron_rod.registerItemModel();
+        bronze_gear.registerItemModel();
+
 
         copper_pickaxe.registerItemModel();
         tin_pickaxe.registerItemModel();
