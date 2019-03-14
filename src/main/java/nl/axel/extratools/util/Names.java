@@ -26,26 +26,31 @@ public class Names {
         public static final String COPPER_PICKAXE = "copper_pickaxe";
         public static final String TIN_PICKAXE = "tin_pickaxe";
         public static final String BRONZE_PICKAXE = "bronze_pickaxe";
+        public static final String OBSIDIAN_PICKAXE = "obsidian_pickaxe";
 
         //swords
         public static final String COPPER_SWORD = "copper_sword";
         public static final String TIN_SWORD = "tin_sword";
         public static final String BRONZE_SWORD = "bronze_sword";
+        public static final String OBSIDIAN_SWORD = "obsidian_sword";
 
         //axes
         public static final String COPPER_AXE = "copper_axe";
         public static final String TIN_AXE = "tin_axe";
         public static final String BRONZE_AXE = "bronze_axe";
+        public static final String OBSIDIAN_AXE = "obsidian_axe";
 
         //hoes
         public static final String COPPER_HOE = "copper_hoe";
         public static final String TIN_HOE = "tin_hoe";
         public static final String BRONZE_HOE = "bronze_hoe";
+        public static final String OBSIDIAN_HOE = "obsidian_hoe";
 
         //shovels
         public static final String COPPER_SHOVEL = "copper_shovel";
         public static final String TIN_SHOVEL = "tin_shovel";
         public static final String BRONZE_SHOVEL = "bronze_shovel";
+        public static final String OBSIDIAN_SHOVEL  = "obsidian_shovel";
 
     }
 }

@@ -38,7 +38,7 @@ public class ExtraTools {
     public static final Item.ToolMaterial copperToolMaterial = EnumHelper.addToolMaterial("COPPER", 2, 200, 5.0F, 1.5F, 18);
     public static final Item.ToolMaterial tinToolMaterial = EnumHelper.addToolMaterial("TIN", 2, 280, 6.0F, 2.0F, 14);
     public static final Item.ToolMaterial bronzeToolMaterial = EnumHelper.addToolMaterial("BRONZE",3, 320,8.0f, 4f, 18 );
-
+    public static final Item.ToolMaterial obsidianToolMaterial = EnumHelper.addToolMaterial("OBSIDIAN", 3, 3200, 14f, 11f, 36 );
 
     @Mod.EventBusSubscriber
     public static class RegistrationHandler {
