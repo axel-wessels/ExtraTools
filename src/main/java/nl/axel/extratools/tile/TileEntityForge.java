@@ -1,12 +1,14 @@
 package nl.axel.extratools.tile;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
-import net.minecraft.world.WorldServer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -16,6 +18,7 @@ import nl.axel.extratools.ExtraTools;
 import nl.axel.extratools.init.ModItems;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class TileEntityForge extends TileEntity implements ITickable {
 
@@ -80,7 +83,14 @@ public class TileEntityForge extends TileEntity implements ITickable {
                 }else {
                     progress--;
                    //Todo paticle spawning
-                }
+                    //ParticlePacket particlePacket = new ParticlePacket(this.getPos().getX(), this.getPos().getY()+1, this.getPos().getZ());
+                    //NetworkRegistry.TargetPoint target = new NetworkRegistry.TargetPoint(world.provider.getDimension(), this.getPos().getX() + 0.5D, this.getPos().getY() + 1.0D, this.getPos().getZ() + 0.5D, 20.0d);
+
+                    //CommonProxy.simpleNetworkWrapper.sendToAllAround(particlePacket, target);
+
+                    this.spawnParticles(world, pos);
+                    }
+
 
                 //else starting the progress
             }else{
@@ -93,18 +103,26 @@ public class TileEntityForge extends TileEntity implements ITickable {
         } else if (isWorking) {
             isWorking = false;
             progress = 0;
+
+            //world.spawnParticle(EnumParticleTypes.FLAME, this.getPos().getX(), this.getPos().getY() + 1, this.getPos().getZ(), 0.0D, 0.0D, 0.0D);
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    private void spawnParticles(World world, BlockPos pos){
+        Random random = world.rand;
+        Minecraft mc = Minecraft.getMinecraft();
+        double d1 = (double) ((float) pos.getX() + random.nextFloat() / 2 + 0.25);
+        double d2 = (double) ((float) pos.getY() + random.nextFloat());
+        double d3 = (double) ((float) pos.getZ() + random.nextFloat() / 2 + 0.25);
+
+        mc.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d1, d2, d3, 0.0D, 0.0D, 0.0D, new int[0]);
     }
 
 
     //public function to check if the tile is busy
-    public boolean getWorking(){
+    public boolean isWorking(){
         return isWorking;
-    }
-
-    @SideOnly(Side.CLIENT)
-    private void SpawnParticle(){
-        world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, (double)pos.getX() + 0.5D, (double)pos.getY() + 1.2D, (double)pos.getZ() + 0.5D, (double)1 / 24.0D, 0.0D, 0.0D);
     }
 
 

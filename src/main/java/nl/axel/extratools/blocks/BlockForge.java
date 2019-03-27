@@ -1,6 +1,7 @@
 package nl.axel.extratools.blocks;
 
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
@@ -12,6 +13,8 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import nl.axel.extratools.ExtraTools;
@@ -20,6 +23,7 @@ import nl.axel.extratools.tile.TileEntityForge;
 import nl.axel.extratools.util.Names;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class BlockForge extends BlockTileEntity<TileEntityForge> {
 
@@ -60,7 +64,7 @@ public class BlockForge extends BlockTileEntity<TileEntityForge> {
 
             //checks if the player is sneaking
             if (!player.isSneaking()) {
-                if(!tile.getWorking()) {
+                if(!tile.isWorking()) {
 
                     //checks if the players hand is empty
                     if (player.getHeldItem(hand).isEmpty()) {
@@ -133,6 +137,8 @@ public class BlockForge extends BlockTileEntity<TileEntityForge> {
         super.breakBlock(world, pos, state);
     }
 
+
+
     @Override
     public Class<TileEntityForge> getTileEntityClass() {
         return TileEntityForge.class;
@@ -143,17 +149,4 @@ public class BlockForge extends BlockTileEntity<TileEntityForge> {
     public TileEntityForge createTileEntity(World world, IBlockState state) {
         return new TileEntityForge();
     }
-
-    public void SpawnParticle(BlockPos pos, World world){
-        int x = pos.getX();
-        int y = pos.getY();
-        int z = pos.getZ();
-
-        world.spawnParticle(EnumParticleTypes.NOTE, x * 2.0F, y * 2.0F, z *2.0F, 0.02D, 0.02D, 0.02D);
-
-
-
-    }
-
-
 }

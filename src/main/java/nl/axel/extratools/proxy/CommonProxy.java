@@ -4,6 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.text.translation.I18n;
 
 public class CommonProxy {
+
     public void registerItemRenderer(Item basicItem, int i, String id) {
     }
 
