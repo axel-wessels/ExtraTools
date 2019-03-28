@@ -5,6 +5,7 @@ public class Names {
     public static class Blocks {
         public static final String COPPER_ORE = "copper_ore";
         public static final String TIN_ORE = "tin_ore";
+        public static final String SMELTERY = "smeltery";
     }
 
     //Items

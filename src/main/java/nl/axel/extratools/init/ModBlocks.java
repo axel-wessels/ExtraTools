@@ -7,7 +7,9 @@ import net.minecraftforge.registries.IForgeRegistry;
 import nl.axel.extratools.blocks.BlockCounter;
 import nl.axel.extratools.blocks.BlockForge;
 import nl.axel.extratools.blocks.BlockOre;
+import nl.axel.extratools.blocks.BlockSmeltery;
 import nl.axel.extratools.util.Names;
+import scala.xml.PrettyPrinter;
 
 public class ModBlocks {
 
@@ -15,17 +17,20 @@ public class ModBlocks {
     public static BlockOre tinOre = new BlockOre(Names.Blocks.TIN_ORE);
     public static BlockCounter counter = new BlockCounter();
     public static BlockForge forge = new BlockForge();
+    public static BlockSmeltery smeltery = new BlockSmeltery();
 
     public static void register(IForgeRegistry<Block> registry) {
         registry.registerAll(
                 copperOre,
                 tinOre,
                 counter,
-                forge
+                forge,
+                smeltery
         );
 
         GameRegistry.registerTileEntity(counter.getTileEntityClass(), counter.getRegistryName().toString());
         GameRegistry.registerTileEntity(forge.getTileEntityClass(), forge.getRegistryName().toString());
+        GameRegistry.registerTileEntity(smeltery.getTileEntityClass(), smeltery.getRegistryName().toString());
 
     }
 
@@ -34,7 +39,8 @@ public class ModBlocks {
                 copperOre.createItemBlock(),
                 tinOre.createItemBlock(),
                 counter.createItemBlock(),
-                forge.createItemBlock()
+                forge.createItemBlock(),
+                smeltery.createItemBlock()
         );
     }
 
@@ -43,5 +49,6 @@ public class ModBlocks {
         tinOre.registerItemModel(Item.getItemFromBlock(tinOre));
         counter.registerItemModel(Item.getItemFromBlock(counter));
         forge.registerItemModel(Item.getItemFromBlock(forge));
+        smeltery.registerItemModel(Item.getItemFromBlock(smeltery));
     }
 }

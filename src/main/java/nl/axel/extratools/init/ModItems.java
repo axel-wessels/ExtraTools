@@ -22,6 +22,9 @@ public class ModItems {
     public static final ItemBasic iron_rod = new ItemBasic(Names.Items.IRON_ROD);
     public static final ItemBasic bronze_gear = new ItemBasic(Names.Items.BRONZE_GEAR);
 
+    /*
+     * ToDo: Make Diamond pickaxe toolparts
+     */
 
     //Pickaxes
     public static final BasicToolPickaxe copper_pickaxe = new BasicToolPickaxe(ExtraTools.copperToolMaterial, Names.Items.COPPER_PICKAXE);

@@ -82,12 +82,6 @@ public class TileEntityForge extends TileEntity implements ITickable {
                     //else progresses
                 }else {
                     progress--;
-                   //Todo paticle spawning
-                    //ParticlePacket particlePacket = new ParticlePacket(this.getPos().getX(), this.getPos().getY()+1, this.getPos().getZ());
-                    //NetworkRegistry.TargetPoint target = new NetworkRegistry.TargetPoint(world.provider.getDimension(), this.getPos().getX() + 0.5D, this.getPos().getY() + 1.0D, this.getPos().getZ() + 0.5D, 20.0d);
-
-                    //CommonProxy.simpleNetworkWrapper.sendToAllAround(particlePacket, target);
-
                     this.spawnParticles(world, pos);
                     }
 
