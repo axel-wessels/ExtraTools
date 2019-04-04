@@ -2,8 +2,12 @@ package nl.axel.extratools.blocks;
 
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -27,9 +31,13 @@ import java.util.Random;
 
 public class BlockForge extends BlockTileEntity<TileEntityForge> {
 
+    public static final PropertyDirection FACING = BlockHorizontal.FACING;
+
 
     public BlockForge(){
         super(Material.ROCK, "forge");
+        this.setTickRandomly(true);
+        this.setDefaultState(this.getBlockState().getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 
     /*
@@ -148,5 +156,50 @@ public class BlockForge extends BlockTileEntity<TileEntityForge> {
     @Override
     public TileEntityForge createTileEntity(World world, IBlockState state) {
         return new TileEntityForge();
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, FACING);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        return 0;
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+        return getDefaultState();
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+        EnumFacing entityFacing = placer.getHorizontalFacing();
+
+        if(!world.isRemote) {
+            if(entityFacing == EnumFacing.NORTH) {
+                entityFacing = EnumFacing.SOUTH;
+            } else if(entityFacing == EnumFacing.EAST) {
+                entityFacing = EnumFacing.WEST;
+            } else if(entityFacing == EnumFacing.SOUTH) {
+                entityFacing = EnumFacing.NORTH;
+            } else if(entityFacing == EnumFacing.WEST) {
+                entityFacing = EnumFacing.EAST;
+            }
+
+            world.setBlockState(pos, state.withProperty(FACING, entityFacing), 2);
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+        TileEntityForge tile = (TileEntityForge) worldIn.getTileEntity(pos);
+        if(tile.isWorking()) {
+            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0D, 0.1D, 0.0D, new int[0]);
+            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0D, 0.1D, 0.0D, new int[0]);
+            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0D, 0.1D, 0.0D, new int[0]);
+        }
     }
 }

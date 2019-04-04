@@ -82,7 +82,7 @@ public class TileEntityForge extends TileEntity implements ITickable {
                     //else progresses
                 }else {
                     progress--;
-                    this.spawnParticles(world, pos);
+                    //this.spawnParticles(world, pos);
                     }
 
 
@@ -97,8 +97,6 @@ public class TileEntityForge extends TileEntity implements ITickable {
         } else if (isWorking) {
             isWorking = false;
             progress = 0;
-
-            //world.spawnParticle(EnumParticleTypes.FLAME, this.getPos().getX(), this.getPos().getY() + 1, this.getPos().getZ(), 0.0D, 0.0D, 0.0D);
         }
     }
 

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "extratools:forge" },
+    "facing=south": { "model": "extratools:forge", "y": 180 },
+    "facing=west":  { "model": "extratools:forge", "y": 270 },
+    "facing=east":  { "model": "extratools:forge", "y": 90 }
+  }
+}
