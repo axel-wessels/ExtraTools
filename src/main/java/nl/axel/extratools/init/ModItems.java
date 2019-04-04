@@ -21,7 +21,11 @@ public class ModItems {
     public static final ItemBasic obsidian_hoehead = new ItemBasic(Names.Items.OBSIDIAN_HOEHEAD);
     public static final ItemBasic iron_rod = new ItemBasic(Names.Items.IRON_ROD);
     public static final ItemBasic bronze_gear = new ItemBasic(Names.Items.BRONZE_GEAR);
-
+    public static final ItemBasic diamond_pickaxehead = new ItemBasic(Names.Items.DIAMOND_PICKAXEHEAD);
+    public static final ItemBasic diamond_swordblade = new ItemBasic(Names.Items.DIAMOND_SWORDBLADE);
+    public static final ItemBasic diamond_shovelhead = new ItemBasic(Names.Items.DIAMOND_SHOVELHEAD);
+    public static final ItemBasic diamond_axehead = new ItemBasic(Names.Items.DIAMOND_AXEHEAD);
+    public static final ItemBasic diamond_hoehead = new ItemBasic(Names.Items.DIAMOND_HOEHEAD);
     /*
      * ToDo: Make Diamond pickaxe toolparts
      */
@@ -70,6 +74,11 @@ public class ModItems {
                 obsidian_hoehead,
                 iron_rod,
                 bronze_gear,
+                diamond_axehead,
+                diamond_hoehead,
+                diamond_pickaxehead,
+                diamond_shovelhead,
+                diamond_swordblade,
 
                 copper_pickaxe,
                 tin_pickaxe,
@@ -110,6 +119,11 @@ public class ModItems {
         obsidian_swordblade.registerItemModel();
         iron_rod.registerItemModel();
         bronze_gear.registerItemModel();
+        diamond_axehead.registerItemModel();
+        diamond_hoehead.registerItemModel();
+        diamond_pickaxehead.registerItemModel();
+        diamond_shovelhead.registerItemModel();
+        diamond_swordblade.registerItemModel();
 
 
         copper_pickaxe.registerItemModel();

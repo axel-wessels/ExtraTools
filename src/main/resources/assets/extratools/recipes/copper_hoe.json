@@ -1,0 +1,19 @@
+{
+"type": "minecraft:crafting_shaped",
+"pattern": [
+" CC",
+" S ",
+" S "
+],
+"key": {
+"C": {
+"item": "extratools:copper_ingot"
+},
+"S": {
+"item": "minecraft:stick"
+}
+},
+"result": {
+"item": "extratools:copper_hoe"
+}
+}

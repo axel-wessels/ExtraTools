@@ -1,32 +1,53 @@
 #Blocks
 tile.copper_ore.name=Copper Ore
 tile.tin_ore.name=Tin Ore
+tile.smeltery.name=Smeltery
+tile.forge.name=Forge
 
 #Items
 item.copper_ingot.name=Copper Ingot
 item.tin_ingot.name=Tin Ingot
 item.bronze_ingot.name=Bronze Ingot
 item.bronze_alloy.name=Bronze Alloy
+item.obsidian_hoehead.name=Obsidian Hoehead
+item.obsidian_axehead.name=Obsidian Axehead
+item.obsidian_pickaxehead.name=Obsidian Pickaxehead
+item.obsidian_shovelhead.name=Obsidian Shovelhead
+item.obsidian_swordblade.name=Obsidian Swordblade
+item.iron_rod.name=Iron Rod
+item.bronze_gear.name=Bronze Gear
+item.diamond_hoehead.name=Diamond Hoehead
+item.diamond_axehead.name=Diamond Axehead
+item.diamond_pickaxehead.name=Diamond Pickaxehead
+item.diamond_shovelhead.name=Diamond Shovelhead
+item.diamond_swordblade.name=Diamond Swordblade
+
+
 
 item.copper_pickaxe.name=Copper Pickaxe
 item.tin_pickaxe.name=Tin Pickaxe
 item.bronze_pickaxe.name=Bronze Pickaxe
+item.obsidian_pickaxe.name=Obsidian Pickaxe
 
 item.copper_sword.name=Copper Sword
 item.tin_sword.name=Tin Sword
 item.bronze_sword.name=Bronze Sword
+item.obsidian_sword.name=Obsidian Sword
 
 item.bronze_axe.name=Bronze Axe
 item.copper_axe.name=Copper Axe
 item.tin_axe.name=Tin Axe
+item.obsidian_axe.name=Obsidian Axe
 
 item.copper_hoe.name=Copper Hoe
 item.tin_hoe.name=Tin Hoe
 item.bronze_hoe.name=Bronze Hoe
+item.obsidian_hoe.name=Obsidian Hoe
 
 item.copper_shovel.name=Copper Hoe
 item.tin_shovel.name=Tin Shovel
 item.bronze_shovel.name=Bronze Shovel
+item.obsidian_shovel.name=Obsidian Shovel
 
 #CreativeTab
 itemGroup.extratools=Extra Tools

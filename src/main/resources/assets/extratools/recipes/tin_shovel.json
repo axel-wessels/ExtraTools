@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " T ",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "T": {
+      "item": "extratools:tin_ingot"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "extratools:tin_shovel"
+  }
+}

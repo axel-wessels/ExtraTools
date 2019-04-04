@@ -6,6 +6,7 @@ public class Names {
         public static final String COPPER_ORE = "copper_ore";
         public static final String TIN_ORE = "tin_ore";
         public static final String SMELTERY = "smeltery";
+        public static final String FORGE = "forge";
     }
 
     //Items
@@ -22,6 +23,11 @@ public class Names {
         public static final String OBSIDIAN_HOEHEAD = "obsidian_hoehead";
         public static final String IRON_ROD = "iron_rod";
         public static final String BRONZE_GEAR = "bronze_gear";
+        public static final String DIAMOND_PICKAXEHEAD = "diamond_pickaxehead";
+        public static final String DIAMOND_SWORDBLADE = "diamond_swordblade";
+        public static final String DIAMOND_SHOVELHEAD = "diamond_shovelhead";
+        public static final String DIAMOND_AXEHEAD = "diamond_axehead";
+        public static final String DIAMOND_HOEHEAD = "diamond_hoehead";
 
         //pickaxes
         public static final String COPPER_PICKAXE = "copper_pickaxe";

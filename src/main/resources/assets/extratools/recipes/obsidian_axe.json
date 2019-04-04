@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " O ",
+    " I ",
+    " I "
+  ],
+  "key": {
+    "O": {
+      "item": "extratools:obsidian_axehead"
+    },
+    "I": {
+      "item": "extratools:iron_rod"
+    }
+  },
+  "result": {
+    "item": "extratools:obsidian_axe"
+  }
+}

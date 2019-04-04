@@ -15,7 +15,6 @@ public class ModBlocks {
 
     public static BlockOre copperOre = new BlockOre(Names.Blocks.COPPER_ORE);
     public static BlockOre tinOre = new BlockOre(Names.Blocks.TIN_ORE);
-    public static BlockCounter counter = new BlockCounter();
     public static BlockForge forge = new BlockForge();
     public static BlockSmeltery smeltery = new BlockSmeltery();
 
@@ -23,12 +22,10 @@ public class ModBlocks {
         registry.registerAll(
                 copperOre,
                 tinOre,
-                counter,
                 forge,
                 smeltery
         );
 
-        GameRegistry.registerTileEntity(counter.getTileEntityClass(), counter.getRegistryName().toString());
         GameRegistry.registerTileEntity(forge.getTileEntityClass(), forge.getRegistryName().toString());
         GameRegistry.registerTileEntity(smeltery.getTileEntityClass(), smeltery.getRegistryName().toString());
 
@@ -38,7 +35,6 @@ public class ModBlocks {
         registry.registerAll(
                 copperOre.createItemBlock(),
                 tinOre.createItemBlock(),
-                counter.createItemBlock(),
                 forge.createItemBlock(),
                 smeltery.createItemBlock()
         );
@@ -47,7 +43,6 @@ public class ModBlocks {
     public static void registerModels() {
         copperOre.registerItemModel(Item.getItemFromBlock(copperOre));
         tinOre.registerItemModel(Item.getItemFromBlock(tinOre));
-        counter.registerItemModel(Item.getItemFromBlock(counter));
         forge.registerItemModel(Item.getItemFromBlock(forge));
         smeltery.registerItemModel(Item.getItemFromBlock(smeltery));
     }
