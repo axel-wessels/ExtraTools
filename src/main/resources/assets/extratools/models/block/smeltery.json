@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "extratools:blocks/smeltery_top",
+    "front": "extratools:blocks/smeltery_front_off",
+    "side": "extratools:blocks/smeltery_side"
+  }
+}

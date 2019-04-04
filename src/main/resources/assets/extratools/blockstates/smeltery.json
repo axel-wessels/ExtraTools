@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "extratools:smeltery" },
+    "facing=south": { "model": "extratools:smeltery", "y": 180 },
+    "facing=west":  { "model": "extratools:smeltery", "y": 270 },
+    "facing=east":  { "model": "extratools:smeltery", "y": 90 }
+  }
+}

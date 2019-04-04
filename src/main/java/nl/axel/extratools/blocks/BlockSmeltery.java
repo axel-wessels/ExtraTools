@@ -11,7 +11,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.Mod;
 import nl.axel.extratools.init.ModItems;
 import nl.axel.extratools.tile.TileEntitySmeltery;
 
@@ -45,20 +44,9 @@ public class BlockSmeltery extends BlockTileEntity<TileEntitySmeltery> {
                 player.inventory.addItemStackToInventory(new ItemStack(Items.BUCKET, 1));
 
                 tile.addLavacount();
-            }else if(player.getHeldItem(hand).getItem() == ModItems.diamond_pickaxehead && tile.getLavaCount() > 0) {
+                //ToDo right item
+            }else if(player.getHeldItem(hand).getItem() == Items.DIAMOND_PICKAXE && tile.getLavaCount() > 0){
                 player.setHeldItem(hand, new ItemStack(ModItems.obsidian_pickaxehead, 1));
-                tile.remLavacount();
-            }else if (player.getHeldItem(hand).getItem() == ModItems.diamond_hoehead && tile.getLavaCount() > 0){
-                    player.setHeldItem(hand, new ItemStack(ModItems.obsidian_hoehead, 1));
-                    tile.remLavacount();
-            }else if (player.getHeldItem(hand).getItem() == ModItems.diamond_shovelhead && tile.getLavaCount() > 0){
-                player.setHeldItem(hand, new ItemStack(ModItems.obsidian_shovelhead, 1));
-                tile.remLavacount();
-            }else if (player.getHeldItem(hand).getItem() == ModItems.diamond_swordblade && tile.getLavaCount() > 0){
-                player.setHeldItem(hand, new ItemStack(ModItems.obsidian_swordblade, 1));
-                tile.remLavacount();
-            }else if (player.getHeldItem(hand).getItem() == ModItems.diamond_axehead && tile.getLavaCount() > 0){
-                player.setHeldItem(hand, new ItemStack(ModItems.obsidian_axehead, 1));
                 tile.remLavacount();
             }else{
                 player.sendMessage(new TextComponentString("Not a valid item" ));
