@@ -1,8 +1,13 @@
 package nl.axel.extratools.blocks;
 
 
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -13,13 +18,22 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import nl.axel.extratools.init.ModItems;
 import nl.axel.extratools.tile.TileEntitySmeltery;
+import nl.axel.extratools.util.Names;
 
 import javax.annotation.Nullable;
 
 
 public class BlockSmeltery extends BlockTileEntity<TileEntitySmeltery> {
 
-    public BlockSmeltery(){ super(Material.ROCK, "smeltery"); }
+    public static final String PROPERTY_NAME = "facing";
+    public static final PropertyInteger PROPERTY = PropertyInteger.create(PROPERTY_NAME, 0, 3);
+
+
+    public BlockSmeltery(){
+        super(Material.ROCK, Names.Blocks.SMELTERY);
+
+        this.setDefaultState(this.getBlockState().getBaseState().withProperty(PROPERTY, 0));
+    }
 
 
     /*
@@ -69,5 +83,45 @@ public class BlockSmeltery extends BlockTileEntity<TileEntitySmeltery> {
     @Override
     public TileEntitySmeltery createTileEntity(World world, IBlockState state) {
         return new TileEntitySmeltery();
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, PROPERTY);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        return state.getValue(PROPERTY);
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+        return this.getDefaultState().withProperty(PROPERTY, meta);
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+        EnumFacing entityFacing = placer.getHorizontalFacing();
+        int facing = 0;
+
+        if(!world.isRemote) {
+
+            if(entityFacing == EnumFacing.NORTH) {
+                //south
+                facing = 2;
+            } else if(entityFacing == EnumFacing.EAST) {
+                //west
+                facing = 3;
+            } else if(entityFacing == EnumFacing.SOUTH) {
+                //north
+                facing = 0;
+            } else if(entityFacing == EnumFacing.WEST) {
+                //east
+                facing = 1;
+            }
+
+            world.setBlockState(pos, state.withProperty(PROPERTY, facing), 2);
+        }
     }
 }

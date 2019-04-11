@@ -1,8 +1,38 @@
 {
+  "forge_marker": 1,
   "variants": {
-    "facing=north": { "model": "extratools:smeltery" },
-    "facing=south": { "model": "extratools:smeltery", "y": 180 },
-    "facing=west":  { "model": "extratools:smeltery", "y": 270 },
-    "facing=east":  { "model": "extratools:smeltery", "y": 90 }
+    "facing=0": {
+      "model": "extratools:smeltery"
+    },
+    "facing=1": {
+      "model": "extratools:smeltery",
+      "y": 90
+    },
+    "facing=2": {
+      "model": "extratools:smeltery",
+      "y": 180
+    },
+    "facing=3": {
+      "model": "extratools:smeltery",
+      "y": 270
+    },
+    "inventory": {
+      "model": "extratools:smeltery_on",
+      "rotation": [
+        90,
+        90,
+        90
+      ],
+      "translation": [
+        0,
+        3,
+        1
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    }
   }
 }

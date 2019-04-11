@@ -43,9 +43,9 @@ public class TileEntityForge extends TileEntity implements ITickable {
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         inventory.deserializeNBT(compound.getCompoundTag("inventory"));
-        progress = compound.getInteger("progress");
-        if(progress > 0){
-            isWorking = true;
+        this.progress = compound.getInteger("progress");
+        if(this.progress > 0){
+            this.isWorking = true;
         }
         super.readFromNBT(compound);
     }
@@ -71,32 +71,32 @@ public class TileEntityForge extends TileEntity implements ITickable {
         //Checks if the Item in the slot is a bronze alloy
         if(inventory.getStackInSlot(0).getItem() == ModItems.bronze_alloy){
             //Checks if the forge is processing already
-            if(isWorking){
+            if(this.isWorking){
                 //Checks if finished, if so set the inventory to 4 bronze ingots and resets
-                if(progress < 1){
+                if(this.progress < 1){
                     inventory.setStackInSlot(0, new ItemStack(ModItems.bronze_ingot, 4));
-                    isWorking = false;
-                    progress = 0;
+                    this.isWorking = false;
+                    this.progress = 0;
                     ExtraTools.logger.debug("finished!");
 
                     //else progresses
                 }else {
-                    progress--;
+                    this.progress--;
                     //this.spawnParticles(world, pos);
                     }
 
 
                 //else starting the progress
             }else{
-                isWorking = true;
-                progress = smeltingTime;
+                this.isWorking = true;
+                this.progress = this.smeltingTime;
                 ExtraTools.logger.debug("start!");
             }
 
             //resets if there is no item and progress is being made
-        } else if (isWorking) {
-            isWorking = false;
-            progress = 0;
+        } else if (this.isWorking) {
+            this.isWorking = false;
+            this.progress = 0;
         }
     }
 
@@ -114,7 +114,8 @@ public class TileEntityForge extends TileEntity implements ITickable {
 
     //public function to check if the tile is busy
     public boolean isWorking(){
-        return isWorking;
+        ExtraTools.logger.error("TILE: " + this.isWorking);
+        return this.isWorking;
     }
 
 

@@ -4,7 +4,9 @@ package nl.axel.extratools.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -24,6 +26,7 @@ import net.minecraftforge.items.IItemHandler;
 import nl.axel.extratools.ExtraTools;
 import nl.axel.extratools.init.ModItems;
 import nl.axel.extratools.tile.TileEntityForge;
+import nl.axel.extratools.tile.TileEntitySmeltery;
 import nl.axel.extratools.util.Names;
 
 import javax.annotation.Nullable;
@@ -31,13 +34,18 @@ import java.util.Random;
 
 public class BlockForge extends BlockTileEntity<TileEntityForge> {
 
-    public static final PropertyDirection FACING = BlockHorizontal.FACING;
+    // 0 = north false
+    // |
+    // V
+    // 7 = west true
+    public static final String PROPERTY_NAME = "facing_active";
+    public static final PropertyInteger PROPERTY = PropertyInteger.create(PROPERTY_NAME, 0, 7);
 
 
     public BlockForge(){
-        super(Material.ROCK, "forge");
+        super(Material.ROCK, Names.Blocks.FORGE);
         this.setTickRandomly(true);
-        this.setDefaultState(this.getBlockState().getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        this.setDefaultState(this.getBlockState().getBaseState().withProperty(PROPERTY, 1));
     }
 
     /*
@@ -160,46 +168,75 @@ public class BlockForge extends BlockTileEntity<TileEntityForge> {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING);
+        return new BlockStateContainer(this, PROPERTY);
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return 0;
+        return state.getValue(PROPERTY);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState();
+        return this.getDefaultState().withProperty(PROPERTY, meta);
     }
 
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
         EnumFacing entityFacing = placer.getHorizontalFacing();
+        int facing = 0;
 
         if(!world.isRemote) {
+
             if(entityFacing == EnumFacing.NORTH) {
-                entityFacing = EnumFacing.SOUTH;
+                //south
+                facing = 2;
             } else if(entityFacing == EnumFacing.EAST) {
-                entityFacing = EnumFacing.WEST;
+                //west
+                facing = 3;
             } else if(entityFacing == EnumFacing.SOUTH) {
-                entityFacing = EnumFacing.NORTH;
+                //north
+                facing = 0;
             } else if(entityFacing == EnumFacing.WEST) {
-                entityFacing = EnumFacing.EAST;
+                //east
+                facing = 1;
             }
 
-            world.setBlockState(pos, state.withProperty(FACING, entityFacing), 2);
+            world.setBlockState(pos, state.withProperty(PROPERTY, facing), 2);
         }
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         TileEntityForge tile = (TileEntityForge) worldIn.getTileEntity(pos);
-        if(tile.isWorking()) {
-            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0D, 0.1D, 0.0D, new int[0]);
-            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0D, 0.1D, 0.0D, new int[0]);
-            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0D, 0.1D, 0.0D, new int[0]);
+
+        int facing = worldIn.getBlockState(pos).getValue(PROPERTY);
+
+        if(rand.nextInt(2) == 0) {
+            ExtraTools.logger.error(tile.isWorking());
         }
+
+        if(rand.nextInt(8) == 0) {
+            if (tile.isWorking()) {
+                ExtraTools.logger.error("Working!");
+                if (facing < 4) {
+                    ExtraTools.logger.error("<4");
+                    worldIn.setBlockState(pos, stateIn.withProperty(PROPERTY, facing + 4));
+                }
+
+
+                //worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0D, 0.1D, 0.0D, new int[0]);
+                //worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0D, 0.1D, 0.0D, new int[0]);
+                //worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0D, 0.1D, 0.0D, new int[0]);
+            } else if (facing > 3) {
+                worldIn.setBlockState(pos, stateIn.withProperty(PROPERTY, facing - 4));
+            }
+        }
+
+    }
+
+    @Override
+    public boolean isTopSolid(IBlockState state) {
+        return super.isTopSolid(state);
     }
 }

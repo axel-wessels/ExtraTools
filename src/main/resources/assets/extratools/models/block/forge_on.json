@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "extratools:blocks/forge_top",
+    "front": "extratools:blocks/forge_front_on",
+    "side": "extratools:blocks/forge_side"
+  }
+}

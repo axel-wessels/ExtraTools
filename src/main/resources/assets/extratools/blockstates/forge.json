@@ -1,8 +1,30 @@
 {
+  "forge_marker": 1,
   "variants": {
-    "facing=north": { "model": "extratools:forge" },
-    "facing=south": { "model": "extratools:forge", "y": 180 },
-    "facing=west":  { "model": "extratools:forge", "y": 270 },
-    "facing=east":  { "model": "extratools:forge", "y": 90 }
-  }
+    "facing_active=0": { "model": "extratools:forge" },
+    "facing_active=4": { "model": "extratools:forge_on" },
+    "facing_active=1":  { "model": "extratools:forge", "y": 90 },
+    "facing_active=5":  { "model": "extratools:forge_on", "y": 90 },
+    "facing_active=2": { "model": "extratools:forge", "y": 180 },
+    "facing_active=6": { "model": "extratools:forge_on", "y": 180 },
+    "facing_active=3":  { "model": "extratools:forge", "y": 270 },
+    "facing_active=7":  { "model": "extratools:forge_on", "y": 270 },
+    "inventory": {
+      "model": "extratools:forge_on",
+      "rotation": [
+        90,
+        90,
+        90
+      ],
+      "translation": [
+        0,
+        3,
+        1
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    }}
 }
