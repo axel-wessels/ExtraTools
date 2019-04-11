@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C ",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "C": {
+      "item": "extratools:diamond_axehead"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "minecraft:diamond_axe"
+  }
+}
