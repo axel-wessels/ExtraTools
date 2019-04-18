@@ -74,13 +74,10 @@ public class BlockForge extends BlockTileEntity<TileEntityForge> {
             //checks if the tile is capable of handling items
             IItemHandler itemHandler = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side);
 
-
-            ExtraTools.logger.debug(itemHandler.getStackInSlot(0).getUnlocalizedName());
-            ExtraTools.logger.debug(Names.Items.BRONZE_ALLOY);
-
             //checks if the player is sneaking
             if (!player.isSneaking()) {
-                if(!tile.isWorking()) {
+                if(!tile.getWorking()) {
+                    ExtraTools.logger.error(tile.getWorking());
 
                     //checks if the players hand is empty
                     if (player.getHeldItem(hand).isEmpty()) {
@@ -101,6 +98,7 @@ public class BlockForge extends BlockTileEntity<TileEntityForge> {
                     //makes sure the block is updated
                     tile.markDirty();
                 } else {
+                    ExtraTools.logger.error(tile.getWorking());
                     player.sendMessage(new TextComponentString("This forge is currently in use!"));
                 }
 
@@ -208,31 +206,34 @@ public class BlockForge extends BlockTileEntity<TileEntityForge> {
 
     @Override
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-        TileEntityForge tile = (TileEntityForge) worldIn.getTileEntity(pos);
+        if (!worldIn.isRemote) {
+            TileEntityForge forge = (TileEntityForge) worldIn.getTileEntity(pos);
 
-        int facing = worldIn.getBlockState(pos).getValue(PROPERTY);
+            int facing = worldIn.getBlockState(pos).getValue(PROPERTY);
 
-        if(rand.nextInt(2) == 0) {
-            ExtraTools.logger.error(tile.isWorking());
-        }
-
-        if(rand.nextInt(8) == 0) {
-            if (tile.isWorking()) {
-                ExtraTools.logger.error("Working!");
-                if (facing < 4) {
-                    ExtraTools.logger.error("<4");
-                    worldIn.setBlockState(pos, stateIn.withProperty(PROPERTY, facing + 4));
-                }
-
-
-                //worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0D, 0.1D, 0.0D, new int[0]);
-                //worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0D, 0.1D, 0.0D, new int[0]);
-                //worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0D, 0.1D, 0.0D, new int[0]);
-            } else if (facing > 3) {
-                worldIn.setBlockState(pos, stateIn.withProperty(PROPERTY, facing - 4));
+            if (rand.nextInt(2) == 0) {
+                //ExtraTools.logger.error(pos.getX() + " = X, " + pos.getY() + " = Y, " + pos.getZ() + " = Z");
+                ExtraTools.logger.error(forge.getWorking());
             }
-        }
 
+            if (rand.nextInt(8) == 0) {
+                if (forge.getWorking()) {
+                    ExtraTools.logger.error("Working!");
+                    if (facing < 4) {
+                        ExtraTools.logger.error("<4");
+                        worldIn.setBlockState(pos, stateIn.withProperty(PROPERTY, facing + 4));
+                    }
+
+
+                    //worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0D, 0.1D, 0.0D, new int[0]);
+                    //worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0D, 0.1D, 0.0D, new int[0]);
+                    //worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0D, 0.1D, 0.0D, new int[0]);
+                } else if (facing > 3) {
+                    worldIn.setBlockState(pos, stateIn.withProperty(PROPERTY, facing - 4));
+                }
+            }
+
+        }
     }
 
     @Override
