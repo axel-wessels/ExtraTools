@@ -10,23 +10,27 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import nl.axel.extratools.ExtraTools;
 import nl.axel.extratools.init.ModItems;
 import nl.axel.extratools.tile.TileEntitySmeltery;
 import nl.axel.extratools.util.Names;
+import net.minecraft.item.Item;
 
 import javax.annotation.Nullable;
+import java.io.IOException;
 
 
 public class BlockSmeltery extends BlockTileEntity<TileEntitySmeltery> {
 
-    public static final String PROPERTY_NAME = "facing";
-    public static final PropertyInteger PROPERTY = PropertyInteger.create(PROPERTY_NAME, 0, 3);
+    public static final String PROPERTY_NAME = "facing_active";
+    public static final PropertyInteger PROPERTY = PropertyInteger.create(PROPERTY_NAME, 0, 7);
 
 
     public BlockSmeltery(){
@@ -44,6 +48,7 @@ public class BlockSmeltery extends BlockTileEntity<TileEntitySmeltery> {
 
         //get the smeltery tile entity from the world
         TileEntitySmeltery tile = getTileEntity(world, pos);
+        int textureValue = 0;
 
         //checks if player hand is NOT empty
         if (!player.getHeldItem(hand).isEmpty()) {
@@ -58,12 +63,51 @@ public class BlockSmeltery extends BlockTileEntity<TileEntitySmeltery> {
                 player.inventory.addItemStackToInventory(new ItemStack(Items.BUCKET, 1));
 
                 tile.addLavacount();
-                //ToDo right item
-            }else if(player.getHeldItem(hand).getItem() == Items.DIAMOND_PICKAXE && tile.getLavaCount() > 0){
-                player.setHeldItem(hand, new ItemStack(ModItems.obsidian_pickaxehead, 1));
-                tile.remLavacount();
+
+                if(tile.getLavaCount() == 1) {
+                    textureValue = state.getValue(PROPERTY);
+                    world.setBlockState(pos, state.withProperty(PROPERTY, textureValue + 4));
+                }
+
             }else{
-                player.sendMessage(new TextComponentString("Not a valid item" ));
+                Item heldItem = player.getHeldItem(hand).getItem();
+                Item returnItem = null;
+                switch (heldItem.getUnlocalizedName()) {
+                    case Names.Items.DIAMOND_PICKAXEHEAD:
+                        returnItem = ModItems.obsidian_pickaxehead;
+                        break;
+                    case Names.Items.DIAMOND_AXEHEAD:
+                        returnItem = ModItems.obsidian_axehead;
+                        break;
+                    case Names.Items.DIAMOND_HOEHEAD:
+                        returnItem = ModItems.obsidian_hoehead;
+                        break;
+                    case Names.Items.DIAMOND_SHOVELHEAD:
+                        returnItem = ModItems.obsidian_shovelhead;
+                        break;
+                    case Names.Items.DIAMOND_SWORDBLADE:
+                        returnItem = ModItems.obsidian_swordblade;
+                        break;
+                }
+
+                //return returnItem
+
+                if (tile.getLavaCount() > 0) {
+                    if (returnItem != null) {//if not returnItem == null
+                        ItemStack current = player.getHeldItem(hand);
+                        player.setHeldItem(hand, new ItemStack(current.getItem(), current.getCount()-1));
+                        player.addItemStackToInventory(new ItemStack(returnItem, 1));
+                        tile.remLavacount();
+                        if (tile.getLavaCount() == 0) {
+                            textureValue = state.getValue(PROPERTY);
+                            world.setBlockState(pos, state.withProperty(PROPERTY, textureValue - 4));
+                        }
+                    } else {
+                        player.sendMessage(new TextComponentString("Not a valid item"));
+                    }
+                } else {
+                  player.sendMessage(new TextComponentString("No lava in the smeltery!"));
+                }
             }
         } else {
             player.sendMessage(new TextComponentString("Lava buckets added: " + tile.getLavaCount() ));

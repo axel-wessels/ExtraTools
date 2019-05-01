@@ -1,21 +1,14 @@
 {
   "forge_marker": 1,
   "variants": {
-    "facing=0": {
-      "model": "extratools:smeltery"
-    },
-    "facing=1": {
-      "model": "extratools:smeltery",
-      "y": 90
-    },
-    "facing=2": {
-      "model": "extratools:smeltery",
-      "y": 180
-    },
-    "facing=3": {
-      "model": "extratools:smeltery",
-      "y": 270
-    },
+    "facing_active=0": { "model": "extratools:smeltery" },
+    "facing_active=4": { "model": "extratools:smeltery_on" },
+    "facing_active=1":  { "model": "extratools:smeltery", "y": 90 },
+    "facing_active=5":  { "model": "extratools:smeltery_on", "y": 90 },
+    "facing_active=2": { "model": "extratools:smeltery", "y": 180 },
+    "facing_active=6": { "model": "extratools:smeltery_on", "y": 180 },
+    "facing_active=3":  { "model": "extratools:smeltery", "y": 270 },
+    "facing_active=7":  { "model": "extratools:smeltery_on", "y": 270 },
     "inventory": {
       "model": "extratools:smeltery_on",
       "rotation": [
@@ -33,6 +26,5 @@
         0.5,
         0.5
       ]
-    }
-  }
+    }}
 }
