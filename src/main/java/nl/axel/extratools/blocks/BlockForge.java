@@ -1,11 +1,7 @@
 package nl.axel.extratools.blocks;
 
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -15,18 +11,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import nl.axel.extratools.ExtraTools;
 import nl.axel.extratools.init.ModItems;
 import nl.axel.extratools.tile.TileEntityForge;
-import nl.axel.extratools.tile.TileEntitySmeltery;
 import nl.axel.extratools.util.Names;
 
 import javax.annotation.Nullable;
@@ -63,6 +55,16 @@ public class BlockForge extends BlockTileEntity<TileEntityForge> {
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+
+        switch (player.getHeldItem(hand).getItem().getUnlocalizedName()){
+            case Names.Items.DIAMOND_PICKAXEHEAD:
+                //replace item
+                break;
+            case Names.Items.DIAMOND_SHOVELHEAD:
+                //replace item
+                break;
+
+        }
 
 
         //checks if the world is local or not
@@ -206,9 +208,9 @@ public class BlockForge extends BlockTileEntity<TileEntityForge> {
 
     @Override
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-        if (!worldIn.isRemote) {
-            TileEntityForge forge = (TileEntityForge) worldIn.getTileEntity(pos);
+        //if (!worldIn.isRemote) {
 
+            TileEntityForge forge = (TileEntityForge) worldIn.getTileEntity(pos);
             int facing = worldIn.getBlockState(pos).getValue(PROPERTY);
 
             if (rand.nextInt(2) == 0) {
@@ -233,7 +235,7 @@ public class BlockForge extends BlockTileEntity<TileEntityForge> {
                 }
             }
 
-        }
+        //}
     }
 
     @Override

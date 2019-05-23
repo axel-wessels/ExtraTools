@@ -114,6 +114,7 @@ public class TileEntityForge extends TileEntity implements ITickable {
 
     //public function to check if the tile is busy
     public boolean getWorking(){
+        ExtraTools.logger.error("In tile: " + isWorking);
         return isWorking;
     }
 
